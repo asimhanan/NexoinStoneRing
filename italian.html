@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Italian Collection - Nexoin Gemstone</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Same header, footer and basic styles as index.html */
+        :root {
+            --primary: #2d5c8a;
+            --secondary: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #1a252f;
+            --accent: #3498db;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        header {
+            /* background-color: var(--primary); */
+            background: linear-gradient(10deg, #c8d2f8, #071660);
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: white;
+            text-decoration: none;
+        }
+        
+        .logo span {
+            color: var(--secondary);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 1.5rem;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: var(--secondary);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        .page-hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(27, 24, 59, 0.087)), url('r\ \(2\).jpg') no-repeat center center;
+            background-size: cover;
+            background-position: center;
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: white;
+        }
+        
+        .page-hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .breadcrumb {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+        
+        .breadcrumb li {
+            margin: 0 0.5rem;
+        }
+        
+        .breadcrumb li a {
+            color: white;
+            text-decoration: none;
+        }
+        
+        .breadcrumb li::after {
+            content: '/';
+            margin-left: 1rem;
+            color: white;
+        }
+        
+        .breadcrumb li:last-child::after {
+            display: none;
+        }
+        
+        .collection-header {
+            text-align: center;
+            padding: 3rem 0;
+        }
+        
+        .collection-header h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        .collection-header p {
+            max-width: 700px;
+            margin: 0 auto;
+            color: #555;
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+            padding: 2rem 0 5rem;
+        }
+        
+        .product-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        .in-cart-badge {
+    display: none;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: green;
+    color: white;
+    padding: 4px 8px;
+    font-size: 12px;
+    border-radius: 25px;
+    z-index: 1;
+}
+        
+        .product-img {
+            height: 300px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .product-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .product-card:hover .product-img img {
+            transform: scale(1.1);
+        }
+        
+        .product-badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background-color: var(--secondary);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .product-info {
+            padding: 1.5rem;
+        }
+        
+        .product-info h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+        
+        .product-info p {
+            color: #666;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+        
+        .product-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .price {
+            font-weight: 700;
+            color: var(--secondary);
+            font-size: 1.2rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 0.6rem 1.5rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+        
+        .btn:hover {
+            background-color: #c0392b;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--secondary);
+            color: var(--secondary);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--secondary);
+            color: white;
+        }
+        
+        /* Same footer styles as index.html */
+        footer {
+            background-color: var(--primary);
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--secondary);
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-column ul li a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: var(--secondary);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .social-links a {
+            color: white;
+            background-color: rgba(255, 255, 255, 0.1);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--secondary);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #fff;
+            font-size: 0.9rem;
+        }
+               
+.logo-containera {
+  position: fixed;
+  top: 25px;
+  left: 20px;
+  z-index: 1000;
+}
+
+.logo-containera img {
+  width: 35px; /* adjust size as needed */
+  border-radius: 50%;
+  height: auto;
+}
+
+.logo-c {
+  position: fixed;
+  bottom: 40px;
+  left: 10px;
+  z-index: 1000;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.logo-c:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+.logo-c img {
+  width: 80px; 
+  height: auto;
+  opacity: 0.7;
+  border-radius: 0%;
+  cursor: pointer;
+   transition: transform 0.5s;
+}
+
+.whatsapp-sticky {
+  position: fixed;
+  bottom: 40px;
+  right: 4px;
+  z-index: 9999;
+}
+
+.whatsapp-sticky img {
+  width: 60px;
+  height: 60px;
+  cursor: pointer;
+}
+
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 1rem;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 0 0.5rem;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .about-img {
+                order: -1;
+            }
+        
+            .page-hero-content h1 {
+                font-size: 2.2rem;
+            }
+            
+            .collection-header h2 {
+                font-size: 2rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .page-hero {
+                height: 40vh;
+            }
+            
+            .page-hero-content h1 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo">Nexoin<span>Gem</span></a>
+                <button class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <nav>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="turkish.html">Turkish</a></li>
+                        <li><a href="arabic.html">Arabic</a></li>
+                        <li><a href="handmade.html">Handmade</a></li>
+                        <li><a href="italian.html">Italian</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+    <a href="https://wa.me/96566621428" target="_blank" class="whatsapp-sticky">
+    <img src="https://img.icons8.com/color/48/000000/whatsapp.png" alt="Chat on WhatsApp" />
+    </a>
+
+
+    <section class="page-hero">
+        <div class="container">
+            <div class="page-hero-content">
+                <h1>Italian Collection</h1>
+                <ul class="breadcrumb">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="italian.html">Italian Collection</a></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="collection-header">
+            <h2>La Dolce Vita Elegance</h2>
+            <p>Our Italian collection embodies the sophistication and timeless style of Italy's finest jewelry traditions. Meticulously crafted by Florentine artisans, these pieces showcase exquisite attention to detail.</p>
+        </div>
+        
+        <div class="products-grid">
+            <div class="product-card">
+                <div class="product-img">
+                    <img src="ss10.jpg" alt="Florentine Signet Ring">
+                    <span class="product-badge">Bestseller</span>
+                </div>
+                <div class="product-info">
+                    <h3>Florentine Signet</h3>
+                    <p>Classic Italian signet Diamond ring with family crest engraving option, in 22k silver.</p>
+                    <div class="product-meta">
+                        <span class="price">$349</span>
+                        <a href="#" class="btn add-to-cart" product-title="Florentine Signet Ring(i1)" product-price="349.99">Add to Cart</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="product-card">
+                <div class="product-img">
+                    <img src="ss9.jpg" alt="Venetian Glass Ring">
+                      <span class="in-cart-badge">In Cart</span>
+                </div>
+                <div class="product-info">
+                    <h3>Venetian Glass</h3>
+                    <p>Authentic Murano glass cabochon set in hand-engraved sterling silver.</p>
+                    <div class="product-meta">
+                        <span class="price">$149</span>
+                        <a href="#" class="btn add-to-cart" product-title="Venetian Glass Ring(i2)" product-price="149.99">Add to Cart</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="product-card">
+                <div class="product-img">
+                    <img src="ss8.jpg" alt="Roman Emperor Ring">
+                      <span class="in-cart-badge">In Cart</span>
+                    <span class="product-badge">New</span>
+                </div>
+                <div class="product-info">
+                    <h3>Roman Emperor</h3>
+                    <p>Bold design inspired by ancient Roman jewelry, with carnelian intaglio.</p>
+                    <div class="product-meta">
+                        <span class="price">$159</span>
+                        <a href="#" class="btn add-to-cart" product-title="Roman Emperor Ring(i3)" product-price="159.99">Add to Cart</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="product-card">
+                <div class="product-img">
+                    <img src="ss7.jpg" alt="Milanese Modern Ring">
+                      <span class="in-cart-badge">In Cart</span>
+                </div>
+                <div class="product-info">
+                    <h3>Milanese Modern</h3>
+                    <p>Sleek contemporary design with brushed silver finish and  Diamond accents.</p>
+                    <div class="product-meta">
+                        <span class="price">$379</span>
+                        <a href="#" class="btn add-to-cart" product-title="Milanese Modern Ring(i4)" product-price="379.99">Add to Cart</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="product-card">
+                <div class="product-img">
+                    <img src="ss5.jpg" alt="Tuscan Sun Ring">
+                      <span class="in-cart-badge">In Cart</span>
+                </div>
+                <div class="product-info">
+                    <h3>Tuscan Sun</h3>
+                    <p>Warm silver band with citrine center stone, evoking Italian countryside.</p>
+                    <div class="product-meta">
+                        <span class="price">$159</span>
+                        <a href="#" class="btn add-to-cart" product-title="Tuscan Sun Ring(i5)" product-price="159.99">Add to Cart</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="product-card">
+                <div class="product-img">
+                    <img src="ss4.jpg" alt="Dolce Vita Ring">
+                      <span class="in-cart-badge">In Cart</span>
+                    <span class="product-badge">Limited</span>
+                </div>
+                <div class="product-info">
+                    <h3>Dolce Vita</h3>
+                    <p>Luxurious white silver ring with alternating diamonds and blue sapphires.</p>
+                    <div class="product-meta">
+                        <span class="price">$129 to $179</span>
+                        <a href="#" class="btn add-to-cart" product-title="Dolce Vita Ring(i6)" product-price="129.99">Add to Cart</a>
+                    </div>
+                </div>
+            </div>
+
+               <div class="product-card">
+                <div class="product-img">
+                    <img src="ss1.jpg" alt="Roman Emperor Ring">
+                      <span class="in-cart-badge">In Cart</span>
+                    <span class="product-badge">New</span>
+                </div>
+                <div class="product-info">
+                    <h3>Roman Emperor</h3>
+                    <p>Bold Diamond design inspired by ancient Roman jewelry, with carnelian intaglio.</p>
+                    <div class="product-meta">
+                        <span class="price">$429</span>
+                        <a href="#" class="btn add-to-cart" product-title="Roman Emperor Ring(i7)" product-price="429.99">Add to Cart</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="product-card">
+                <div class="product-img">
+                    <img src="ss2.jpg" alt="Milanese Modern Ring">
+                      <span class="in-cart-badge">In Cart</span>
+                </div>
+                <div class="product-info">
+                    <h3>Milanese Modern</h3>
+                    <p>Sleek contemporary design with brushed silver finish and black  accents.</p>
+                    <div class="product-meta">
+                        <span class="price">$149</span>
+                        <a href="#" class="btn add-to-cart" product-title="Milanese Modern Ring(i8)" product-price="149.99">Add to Cart</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="product-card">
+                <div class="product-img">
+                    <img src="ss3.jpg" alt="Tuscan Sun Ring">
+                      <span class="in-cart-badge">In Cart</span>
+                </div>
+                <div class="product-info">
+                    <h3>Tuscan Sun</h3>
+                    <p>Warm white silver band with citrine center stone, evoking Italian countryside.</p>
+                    <div class="product-meta">
+                        <span class="price">$149</span>
+                        <a href="#" class="btn add-to-cart" product-title="Tuscan Sun Ring(i9)" product-price="149.99">Add to Cart</a>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>About NexoinGem</h3>
+                    <p>We specialize in premium men's gemstone rings, offering unique designs from around the world.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="turkish.html">Turkish Collection</a></li>
+                        <li><a href="arabic.html">Arabic Collection</a></li>
+                        <li><a href="handmade.html">Handmade Collection</a></li>
+                        <li><a href="italian.html">Italian Collection</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Customer Service</h3>
+                    <ul>
+                        <li><a href="https://wa.me/96566621428">Contact Us</a></li>
+                        <li><a href="https://wa.me/96566621428">Shipping Policy</a></li>
+                        <li><a href="https://wa.me/96566621428">Returns & Exchanges</a></li>
+                        <li><a href="https://wa.me/96566621428">Size Guide</a></li>
+                        <li><a href="https://wa.me/96566621428">FAQs</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contact Info</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> Kuwait city , KUWAIT</li>
+                        <li><i class="fas fa-phone"></i> +965 66621428</li>
+                        <li><i class="fas fa-envelope"></i> nexoin.nrl@gmail.com</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 NexoinGem. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+       <div class="logo-containera">
+    <img src="logoa.jpg" alt="Logo">
+
+     <a href="cart.html" class="logo-c">
+    <img src="z2.png" alt="Cart">
+    </a>
+
+    <script src="script.js"></script>
+</body>
+</html>

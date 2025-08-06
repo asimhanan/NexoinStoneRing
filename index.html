@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexoin International - Premium Silver Gemstone Rings</title>
+    <style>
+        :root {
+            --primary-color: #ffffff;
+            --secondary-color: #e74c3c;
+            --accent-color: #f39c12;
+            --light-color: #ffffff;
+            --dark-color: rgba(30, 18, 208, 0.655);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+             background-color: var(--dark-color);
+            color: rgba(252, 252, 252, 0.6);
+            line-height: 1.6;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--dark-color));
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: rgb(26, 6, 150);
+            text-decoration: none;
+        }
+        
+        .logo span {
+            color: var(--accent-color);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 1.5rem;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            padding: 0.5rem 0.1rem;
+            border-radius: 4px;
+        }
+        
+        nav ul li a:hover {
+            color: #ed1e07;
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(27, 24, 59, 0.087)), url('r\ \(4\).jpg');
+            background-size: cover;
+            background-position: center;
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            position: relative;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(163, 162, 199, 0.073);
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            color: white;
+            width: 100%;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 0.8rem 1.8rem;
+            border: none;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #e67e22;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+         .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--secondary-color);
+            color: var(--secondary-color);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin: 3rem 0;
+            font-size: 2.2rem;
+            color: var(--primary-color);
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background-color: var(--accent-color);
+            margin: 0.5rem auto;
+        }
+        
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+            background-color: #7657f0;
+        }
+        
+        .product-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        .in-cart-badge {
+    display: none;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: green;
+    color: white;
+    padding: 4px 8px;
+    font-size: 12px;
+    border-radius: 25px;
+    z-index: 1;
+}
+        
+        .product-img {
+            position: relative;
+            height: 350px;
+            overflow: hidden;
+        }
+        
+        .product-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .product-card:hover .product-img img {
+            transform: scale(1.1);
+        }
+        
+        .product-info {
+            padding: 1.5rem;
+        }
+        
+        .product-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark-color);
+        }
+        
+        .product-description {
+            color: rgba(63, 21, 191, 0.824);
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+        
+        .product-price {
+            font-weight: 700;
+            color: var(--secondary-color);
+            font-size: 1.2rem;
+        }
+        
+        .about {
+            background-color:  #3418a6;
+            padding: 4rem 0;
+        }
+        
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+        
+        .about-img {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .about-img img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .about-text h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+        }
+        
+        .about-text p {
+            margin-bottom: 1rem;
+            color: #fff;
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .feature {
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .feature-icon {
+            font-size: 1.5rem;
+            color: var(--accent-color);
+            margin-right: 1rem;
+            margin-top: 0.3rem;
+        }
+        
+        .feature-text h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: #fff;
+        }
+        
+        .feature-text p {
+            font-size: 0.9rem;
+            color: #fff;
+        }
+        
+        .contact {
+            background-color: var(--dark-color);
+            padding: 4rem 0;
+        }
+        
+        .contact-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+        }
+        
+        .contact-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+        }
+        
+        .contact-info p {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            color: #fff;
+        }
+        
+        .contact-info i {
+            margin-right: 0.8rem;
+            color: var(--accent-color);
+        }
+        
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 0.8rem;
+            margin-bottom: 1rem;
+            border: 1px solid #fff;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        
+        .contact-form textarea {
+            height: 150px;
+            resize: vertical;
+        }
+        
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--accent-color);
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-column ul li a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: var(--accent-color);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255);
+            color: #000;
+            font-size: 0.9rem;
+        }
+        
+.logo-containera {
+  position: fixed;
+  top: 25px;
+  left: 20px;
+  z-index: 1000;
+}
+
+.logo-containera img {
+  width: 35px; /* adjust size as needed */
+  border-radius: 50%;
+  height: auto;
+}
+
+        
+.logo-c {
+  position: fixed;
+  bottom: 40px;
+  left: 10px;
+  z-index: 1000;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.logo-c:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+.logo-c img {
+  width: 80px;
+  opacity: 0.7; 
+  height: auto;
+  cursor: pointer;
+   transition: transform 0.5s;
+}
+
+
+.whatsapp-sticky {
+  position: fixed;
+  bottom: 40px;
+  right: 4px;
+  z-index: 9999;
+}
+
+.whatsapp-sticky img {
+  width: 60px;
+  height: 50px;
+  cursor: pointer;
+}
+
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 1rem;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 0 0.5rem;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .about-img {
+                order: -1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <a href="index.html" class="logo">Nexoin <span>Stone Rings</span></a>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="turkish.html">Turkish</a></li>
+                    <li><a href="arabic.html">Arabic</a></li>
+                    <li><a href="handmade.html">HandMade</a></li>
+                    <li><a href="italian.html">Italian</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <a href="https://wa.me/96566621428" target="_blank" class="whatsapp-sticky">
+    <img src="https://img.icons8.com/color/48/000000/whatsapp.png" alt="Chat on WhatsApp" />
+    </a>
+
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Premium Silver Gemstone Rings</h1>
+            <p>Discover our exquisite collection of handcrafted silver rings with certified gemstones from around the world. Custom designs available upon request.</p>
+            <a href="#products" class="btn">Explore Collection</a>
+        </div>
+    </section>
+
+    <section id="products" class="container">
+        <h2 class="section-title">Our Featured Rings</h2>
+        <div class="products">
+            <!-- Product 1 -->
+            <div class="product-card">
+                <div class="product-img">
+                    <img src="n (1).jpg" alt="Turkish Emerald Ring">
+                      <span class="in-cart-badge">In Cart</span>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Turkish Emerald Ring</h3>
+                    <p class="product-description">Handcrafted silver ring with certified Colombian emerald from our Turkish historical collection.</p>
+                    <p class="product-price">$149.99</p>
+                    <a href="#" class="btn add-to-cart" product-title="Turkish Emerald Ring(m1)" product-price="149.99">Add to Cart</a>
+                </div>
+            </div>
+            
+            <!-- Product 2 -->
+            <div class="product-card">
+                <div class="product-img">
+                    <img src="r (1).jpg" alt="Arabic Ruby Ring">
+                      <span class="in-cart-badge">In Cart</span>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Arabic Ruby Ring</h3>
+                    <p class="product-description">Unique Arabic design with Peshawar certified ruby set in premium silver.</p>
+                    <p class="product-price">$179.99</p>
+                    <a href="#" class="btn add-to-cart" product-title="Arabic Ruby Ring(m2)" product-price="179.99">Add to Cart</a>
+                </div>
+            </div>
+            
+            <!-- Product 3 -->
+            <div class="product-card">
+                <div class="product-img">
+                    <img src="turkF.jpeg" alt="Italian Sapphire Ring">
+                      <span class="in-cart-badge">In Cart</span>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Italian Sapphire Ring</h3>
+                    <p class="product-description">Latest Italian design featuring Sri Lankan sapphire in contemporary silver setting.</p>
+                    <p class="product-price">$199.99</p>
+                    <a href="#" class="btn add-to-cart" product-title="Italian sapphire Ring(m3)" product-price="199.99">Add to Cart</a>
+                </div>
+            </div>
+            
+            <!-- Product 4 -->
+            <div class="product-card">
+                <div class="product-img">
+                    <img src="opal (1).jpg" alt="Hindi Opal Ring">
+                      <span class="in-cart-badge">In Cart</span>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Hindi Opal Ring</h3>
+                    <p class="product-description">Traditional Hindi style with Australian opal centerpiece in ornate silver.</p>
+                    <p class="product-price">$159.99</p>
+                    <a href="#" class="btn add-to-cart" product-title="Hindi Opal Ring(m4)" product-price="159.99">Add to Cart</a>
+                </div>
+            </div>
+            
+            <!-- Product 5 -->
+            <div class="product-card">
+                <div class="product-img">
+                    <img src="turkBlack.jpeg" alt="Handmade Amethyst Ring">
+                      <span class="in-cart-badge">In Cart</span>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Handmade Amethyst Ring</h3>
+                    <p class="product-description">Artisanal handcrafted ring with Brazilian amethyst and intricate silver filigree.</p>
+                    <p class="product-price">$149.99</p>
+                    <a href="#" class="btn add-to-cart" product-title="Handmade Amethyst Ring(m5)" product-price="149.99">Add to Cart</a>
+                </div>
+            </div>
+            
+            <!-- Product 6 -->
+            <div class="product-card">
+                <div class="product-img">
+                    <img src="10955[1].jpg" alt="Turkish Topaz Ring">
+                      <span class="in-cart-badge">In Cart</span>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Turkish Topaz Ring</h3>
+                    <p class="product-description">From our historical collection, featuring blue topaz in Ottoman-inspired silver setting.</p>
+                    <p class="product-price">$199.99</p>
+                    <a href="#" class="btn add-to-cart" product-title="Turkish Topaz Ring(m6)" product-price="199.99">Add to Cart</a>
+                </div>
+            </div>
+            
+            <!-- Product 7 -->
+            <div class="product-card">
+                <div class="product-img">
+                    <img src="d.jpg" alt="Arabic Diamond Ring">
+                      <span class="in-cart-badge">In Cart</span>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Arabic Diamond Ring</h3>
+                    <p class="product-description">Unique geometric design with conflict-free diamonds set in high-quality silver.</p>
+                    <p class="product-price">$549.99</p>
+                    <a href="#" class="btn add-to-cart" product-title="Arabic Diamond Ring(m7)" product-price="549.99">Add to Cart</a>
+                </div>
+            </div>
+            
+            <!-- Product 8 -->
+            <div class="product-card">
+                <div class="product-img">
+                    <img src="r (3).jpg" alt="Italian Garnet Ring">
+                      <span class="in-cart-badge">In Cart</span>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Italian Garnet Ring</h3>
+                    <p class="product-description">Modern Italian design with deep red garnet in sleek silver band.</p>
+                    <p class="product-price">$129.99</p>
+                    <a href="#" class="btn add-to-cart" product-title="Italian Garnet Ring(m8)" product-price="129.99">Add to Cart</a>
+                </div>
+            </div>
+            
+            <!-- Product 9 -->
+            <div class="product-card">
+                <div class="product-img">
+                    <img src="r (4).jpg" alt="Hindi Ruby Ring">
+                      <span class="in-cart-badge">In Cart</span>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Hindi ruby Ring</h3>
+                    <p class="product-description">Traditional design featuring South Sea ruby with silver floral motifs.</p>
+                    <p class="product-price">$159.99</p>
+                    <a href="#" class="btn add-to-cart" product-title="Hindi Ruby Ring(m9)" product-price="159.99">Add to Cart</a>
+                </div>
+            </div>
+            
+            <!-- Product 10 -->
+            <div class="product-card">
+                <div class="product-img">
+                    <img src="g.jpg" alt="Handmade Emerald Ring">
+                      <span class="in-cart-badge">In Cart</span>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Handmade Emerald Ring</h3>
+                    <p class="product-description">Authentic handmade ring with Persian Emerald in artisan silver setting.</p>
+                    <p class="product-price">$149.99</p>
+                    <a href="#" class="btn add-to-cart" product-title="Handmade Emerald Ring(m10)" product-price="149.99">Add to Cart</a>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-img">
+                    <img src="ss5.jpg" alt="Turkish sapphire Ring">
+                      <span class="in-cart-badge">In Cart</span>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Turkish sapphire Ring</h3>
+                    <p class="product-description">Handcrafted silver ring with certified Colombian emerald from our Turkish historical collection.</p>
+                    <p class="product-price">$189.99</p>
+                    <a href="#" class="btn add-to-cart" product-title="Turkish sapphire Ring(m11)" product-price="189.99">Add to Cart</a>
+                </div>
+            </div>
+            
+            <!-- Product 2 -->
+            <div class="product-card">
+                <div class="product-img">
+                    <img src="r (2).jpg" alt="Arabic Aqiq Ring">
+                      <span class="in-cart-badge">In Cart</span>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Arabic Aqiq Ring</h3>
+                    <p class="product-description">Unique Arabic design with Peshawar certified ruby set in premium silver.</p>
+                    <p class="product-price">$149.99</p>
+                    <a href="#" class="btn add-to-cart" product-title="Arabic Aqiq Ring(m12)" product-price="149.99">Add to Cart</a>
+            
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="about">
+        <div class="container about-content">
+            <div class="about-text">
+                <h2>About Nexoin Stone Rings</h2>
+                <p>Established in 2010, Nexoin International specializes in providing unique silver gemstone rings with a wide variety for men. Our collections include Turkish historical pieces, Arabic unique designs, Italian latest styles, Hindi traditional rings, and local handmade creations.</p>
+                <p>We offer custom crafting services - customers can request any stone or silver ring design to be made especially for them. Our unique 65% money-back guarantee allows customers to get $65 back from every $100 spent at any time, whether for the ring or stone.</p>
+                
+                <div class="features">
+                    <div class="feature">
+                        <div class="feature-icon">✓</div>
+                        <div class="feature-text">
+                            <h3>Certified Stones</h3>
+                            <p>All stones certified from Namak Mandi Peshawar and Colombo, Sri Lanka.</p>
+                        </div>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon">✓</div>
+                        <div class="feature-text">
+                            <h3>Fast Delivery</h3>
+                            <p>Delivery time ranges from 2 to 10 days depending on customer requirements.</p>
+                        </div>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon">✓</div>
+                        <div class="feature-text">
+                            <h3>Customer Trust</h3>
+                            <p>Customer satisfaction is our top priority and their trust is our pride.</p>
+                        </div>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon">✓</div>
+                        <div class="feature-text">
+                            <h3>Regional Presence</h3>
+                            <p>Serving Kuwait, Saudi Arabia, UAE, Qatar, Pakistan, Bahrain, and Muscat.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="about-img">
+                <img src="fb22 .jpg" alt="Nexoin International Showroom">
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Contact Us</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Get in Touch</h3>
+                    <p><i>📞</i> Gulf Customers: WhatsApp 00965 66621428</p>
+                    <p><i>📞</i> Pakistan Customers: WhatsApp 0092 3051636357</p>
+                    <p><i>✉️</i> Email: nexoin.nrl@gmail.com</p>
+                    <p><i>🏢</i> Head Office: Kuwait city , KUWAIT</p>
+                    <p><i>🌐</i> Affiliate members in Kuwait & Pakistan since 2010</p>
+                    
+                    <h3 style="margin-top: 2rem;">Our Other Services</h3>
+                    <p><i>💎</i> Nexoin Gemstone Webpage : <a href="https://asimhanan.github.io/NexoinGemStone/" style="color: var(--accent-color);"> www.NexoinGemstone.com</a></p>
+                    <p><i>📱</i> Find your Burj, lucky stone and number :<a href="https://asimhanan.github.io/NEXOIN/" style="color: var(--accent-color);"> "Tariq Burj App"</a></p>
+                    <p><i>💍</i> Nexoin Jewellery Website : <a href="https://asimhanan.github.io/NEXOIN/" style="color: var(--accent-color);"> www.Nexoin-Developers.com</a></p>
+                    <p><i>🛠</i> Nexoin Developer Website: For other products including AGL (gold testing) and ASL (silver testing) software</p>
+                </div>
+                <div class="contact-form">
+                    <form>
+                        <input type="text" placeholder="Your Name" required>
+                        <input type="email" placeholder="Your Email" required>
+                        <input type="tel" placeholder="Your Phone Number">
+                        <textarea placeholder="Your Message" required></textarea>
+                        <button type="submit" class="btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Nexoin Stone Rings</h3>
+                    <p>Specialists in unique silver gemstone rings for men since 2010. Customer satisfaction is our priority.</p>
+                    <div class="social-links">
+                        <a href="#"><i><img src="youtube.png" alt="youtube" height="20px" width="20px"></i></a>
+                        <a href="#"><i><img src="facebook.png" alt="facebook" height="20px" width="20px"></i></a>
+                        <a href="#"><i><img src="instagram.jpeg" alt="instagram" height="20px" width="20px"></i></a>
+                        <a href="#"><i><img src="tiktok.png" alt="TikTok" height="20px" width="20px"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="#products">Our Products</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Collections</h3>
+                    <ul>
+                        <li><a href="turkish.html">Turkish Historical</a></li>
+                        <li><a href="arabic.html">Arabic Unique</a></li>
+                        <li><a href="handmade.html">Hand Made</a></li>
+                        <li><a href="italian.html">Italian Designs</a></li>
+                        <li><a href="#">Hindi Styles</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact Info</h3>
+                    <ul>
+                        <li>Head Office: kuwait city , KUWAIT</li>
+                        <li>Email: nexoin.nrl@gmail.com</li>
+                        <li>Phone: 00965 66621428</li>
+                        <li>Phone: 0092 3466677594</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2010 Nexoin Stone Rings. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+     <div class="logo-containera">
+      <img src="logoa.jpg" alt="Logo">
+     </div>
+
+    <a href="cart.html" class="logo-c">
+    <img src="z2.png" alt="Cart">
+    </a>
+    
+
+<script src="script.js"></script>
+</body>
+</html>
