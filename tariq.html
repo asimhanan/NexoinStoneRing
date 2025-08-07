@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tariq - Discover Your Lucky Elements</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 4rem;
+            font-weight: bold;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 4rem 0;
+            text-align: center;
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+
+        /* Form Styles */
+        .form-container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            max-width: 500px;
+            margin: 0 auto 3rem;
+            animation: fadeInUp 1s ease-out 0.4s both;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #555;
+        }
+
+        input[type="text"],
+        input[type="date"] {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e1e5e9;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: #f8f9fa;
+        }
+
+        input[type="text"]:focus,
+        input[type="date"]:focus {
+            outline: none;
+            border-color: #667eea;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 14px 30px;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        /* Results Section */
+        .results {
+            display: none;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem auto;
+            max-width: 800px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            animation: slideInUp 0.6s ease-out;
+        }
+
+        .results.show {
+            display: block;
+        }
+
+        .results h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 2rem;
+            font-size: 2rem;
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .result-card {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .result-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .result-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            opacity: 0.9;
+        }
+
+        .result-card .value {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .color-display {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin: 0 auto;
+            border: 3px solid white;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        /* Gemstone Detail */
+        .gemstone-detail {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-top: 2rem;
+            color: #333;
+        }
+
+        .gemstone-detail h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: #2c3e50;
+        }
+
+        .gemstone-properties {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .property {
+            background: rgba(255, 255, 255, 0.7);
+            padding: 1rem;
+            border-radius: 10px;
+        }
+
+        .property strong {
+            color: #2c3e50;
+        }
+
+        /* Gemstone Gallery */
+        .gemstone-gallery {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 3rem 2rem;
+            margin: 3rem auto;
+            max-width: 1000px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .gemstone-gallery h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 2rem;
+            font-size: 2.5rem;
+        }
+
+        .gemstone-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .gemstone-card {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            border-radius: 15px;
+            padding: 1.5rem;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .gemstone-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .gemstone-card h3 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+        }
+
+        .gemstone-card p {
+            color: #555;
+            line-height: 1.6;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .form-container,
+            .results,
+            .gemstone-gallery {
+                margin: 1rem;
+                padding: 1.5rem;
+            }
+
+            .results-grid {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                gap: 1rem;
+            }
+
+            .gemstone-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 10px;
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .results-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">✨ طارق</div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>Discover Your Lucky Elements</h1>
+                <p>Enter your name or date of birth to reveal your lucky number, color, star, and gemstone</p>
+                <p>We will use<b> "علم العداد"</b> to find your lucky Stone & Star</p>
+                
+                <div class="form-container">
+                    <form id="luckyForm">
+                        <div class="form-group">
+                            <label for="name">Your Name</label>
+                            <input type="text" id="name" name="name" placeholder="Enter your full name">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="dob">Date of Birth</label>
+                            <input type="date" id="dob" name="dob">
+                        </div>
+                        
+                        <button type="submit" class="btn">Discover My Lucky Elements</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <section class="results" id="results">
+            <div class="container">
+                <h2>Your Lucky Elements</h2>
+                <div class="results-grid">
+                    <div class="result-card">
+                        <h3>Lucky Number</h3>
+                        <div class="value" id="luckyNumber">-</div>
+                    </div>
+                    <div class="result-card">
+                        <h3>Lucky Color</h3>
+                        <div class="color-display" id="colorDisplay"></div>
+                        <div class="value" id="luckyColor">-</div>
+                    </div>
+                    <div class="result-card">
+                        <h3>Lucky Star</h3>
+                        <div class="value" id="luckyStar">-</div>
+                    </div>
+                    <div class="result-card">
+                        <h3>Lucky Stone</h3>
+                        <div class="value" id="luckyStone">-</div>
+                    </div>
+                </div>
+                
+                <div class="gemstone-detail" id="gemstoneDetail">
+                    <!-- Gemstone details will be populated here -->
+                </div>
+            </div>
+        </section>
+
+        <section class="gemstone-gallery">
+            <div class="container">
+                <h2>Popular Gemstones</h2>
+                <div class="gemstone-grid">
+                    <div class="gemstone-card">
+                        <h3>💎 Diamond</h3>
+                        <p>The hardest natural substance on Earth, diamonds symbolize eternal love and invincibility. Known for their brilliant sparkle and fire, diamonds are believed to enhance clarity of thought and bring courage to the wearer.</p>
+                    </div>
+                    
+                    <div class="gemstone-card">
+                        <h3>❤️ Ruby</h3>
+                        <p>The king of precious stones, rubies represent passion, protection, and prosperity. Their deep red color symbolizes the life force and is believed to bring vitality, confidence, and success in love and business.</p>
+                    </div>
+                    
+                    <div class="gemstone-card">
+                        <h3>💚 Emerald</h3>
+                        <p>Symbol of rebirth and love, emeralds are believed to grant the owner foresight, good fortune, and youth. Their vibrant green color represents growth, harmony, and the renewal of life.</p>
+                    </div>
+                    
+                    <div class="gemstone-card">
+                        <h3>💙 Sapphire</h3>
+                        <p>Known as the stone of wisdom and royalty, sapphires promote mental clarity, spiritual enlightenment, and divine favor. They are believed to attract blessings and protect against negative energies.</p>
+                    </div>
+                    
+                    <div class="gemstone-card">
+                        <h3>🟣 Amethyst</h3>
+                        <p>A powerful protective stone, amethyst is known for its ability to calm the mind, enhance intuition, and promote spiritual growth. It's believed to help overcome addictions and negative thought patterns.</p>
+                    </div>
+                    
+                    <div class="gemstone-card">
+                        <h3>🟡 Topaz</h3>
+                        <p>A stone of joy and abundance, topaz is believed to promote confidence, creativity, and good fortune. It's known to help release tension, promote relaxation, and attract wealth and success.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Gemstone database with detailed information
+        const gemstoneData = {
+            'Diamond': {
+                description: 'The hardest natural substance on Earth, diamonds are formed deep within the Earth under extreme pressure and temperature. They symbolize eternal love, invincibility, and purity.',
+                properties: {
+                    'Hardness': '10 (Mohs Scale)',
+                    'Color': 'Colorless, Yellow, Brown, Blue, Pink, Green',
+                    'Origin': 'South Africa, Russia, Australia, Canada',
+                    'Chakra': 'Crown Chakra',
+                    'Element': 'Fire',
+                    'Zodiac': 'Aries, Leo'
+                },
+                benefits: 'Enhances clarity of thought, brings courage, amplifies energy, promotes spiritual growth, and attracts abundance.',
+                healing: 'Believed to detoxify the body, boost immune system, and help with brain-related disorders.'
+            },
+            'Ruby': {
+                description: 'Known as the "King of Precious Stones," rubies are a variety of corundum colored by chromium. They represent passion, protection, and prosperity.',
+                properties: {
+                    'Hardness': '9 (Mohs Scale)',
+                    'Color': 'Red (various shades)',
+                    'Origin': 'Myanmar, Thailand, Sri Lanka, Madagascar',
+                    'Chakra': 'Root and Heart Chakra',
+                    'Element': 'Fire',
+                    'Zodiac': 'Cancer, Leo, Scorpio, Sagittarius'
+                },
+                benefits: 'Increases vitality, promotes courage, enhances passion, brings success in love and business, and provides protection.',
+                healing: 'Stimulates circulation, supports heart health, and helps overcome exhaustion and lethargy.'
+            },
+            'Emerald': {
+                description: 'Emeralds are a variety of beryl colored by trace amounts of chromium or vanadium. They symbolize rebirth, love, and fertility.',
+                properties: {
+                    'Hardness': '7.5-8 (Mohs Scale)',
+                    'Color': 'Green (various shades)',
+                    'Origin': 'Colombia, Zambia, Brazil, Zimbabwe',
+                    'Chakra': 'Heart Chakra',
+                    'Element': 'Earth',
+                    'Zodiac': 'Taurus, Gemini, Cancer'
+                },
+                benefits: 'Promotes emotional healing, enhances intuition, brings good fortune, supports growth and renewal.',
+                healing: 'Supports eye health, aids in recovery from illness, and helps with emotional trauma.'
+            },
+            'Sapphire': {
+                description: 'Sapphires are corundum gemstones in any color except red. They represent wisdom, royalty, and divine favor.',
+                properties: {
+                    'Hardness': '9 (Mohs Scale)',
+                    'Color': 'Blue, Pink, Yellow, White, Green',
+                    'Origin': 'Kashmir, Myanmar, Sri Lanka, Australia',
+                    'Chakra': 'Throat and Third Eye Chakra',
+                    'Element': 'Water and Air',
+                    'Zodiac': 'Virgo, Libra, Sagittarius'
+                },
+                benefits: 'Enhances wisdom, promotes mental clarity, attracts blessings, provides spiritual protection.',
+                healing: 'Supports nervous system, aids in meditation, and helps with mental disorders.'
+            },
+            'Amethyst': {
+                description: 'A variety of quartz colored by iron and aluminum, amethyst is known for its beautiful purple color and spiritual properties.',
+                properties: {
+                    'Hardness': '7 (Mohs Scale)',
+                    'Color': 'Purple (light to deep)',
+                    'Origin': 'Brazil, Uruguay, Zambia, Russia',
+                    'Chakra': 'Crown and Third Eye Chakra',
+                    'Element': 'Water',
+                    'Zodiac': 'Pisces, Virgo, Aquarius, Capricorn'
+                },
+                benefits: 'Calms the mind, enhances intuition, promotes sobriety, provides spiritual protection.',
+                healing: 'Helps with insomnia, reduces stress, supports addiction recovery, and enhances immune system.'
+            },
+            'Topaz': {
+                description: 'Topaz is a silicate mineral known for its hardness and variety of colors. It symbolizes joy, abundance, and good fortune.',
+                properties: {
+                    'Hardness': '8 (Mohs Scale)',
+                    'Color': 'Blue, Pink, Yellow, White, Brown',
+                    'Origin': 'Brazil, Pakistan, Russia, Sri Lanka',
+                    'Chakra': 'Solar Plexus and Throat Chakra',
+                    'Element': 'Fire and Air',
+                    'Zodiac': 'Sagittarius, Leo, Scorpio'
+                },
+                benefits: 'Promotes confidence, enhances creativity, attracts wealth, brings joy and relaxation.',
+                healing: 'Supports digestion, helps with weight loss, and aids in tissue regeneration.'
+            },
+            'Garnet': {
+                description: 'Garnets are a group of silicate minerals known for their deep red color and regenerative properties.',
+                properties: {
+                    'Hardness': '6.5-7.5 (Mohs Scale)',
+                    'Color': 'Red, Orange, Yellow, Green',
+                    'Origin': 'India, Sri Lanka, Africa, Australia',
+                    'Chakra': 'Root Chakra',
+                    'Element': 'Fire',
+                    'Zodiac': 'Capricorn, Aquarius, Leo'
+                },
+                benefits: 'Enhances passion, provides grounding, boosts energy, promotes commitment and devotion.',
+                healing: 'Supports blood circulation, helps with arthritis, and boosts metabolism.'
+            },
+            'Opal': {
+                description: 'Opals are hydrated silica known for their unique play of colors. They symbolize hope, creativity, and emotional healing.',
+                properties: {
+                    'Hardness': '5.5-6.5 (Mohs Scale)',
+                    'Color': 'White, Black, Fire, Boulder',
+                    'Origin': 'Australia, Ethiopia, Mexico, Brazil',
+                    'Chakra': 'All Chakras',
+                    'Element': 'Water',
+                    'Zodiac': 'Cancer, Libra, Scorpio, Pisces'
+                },
+                benefits: 'Enhances creativity, promotes emotional healing, amplifies feelings, brings inspiration.',
+                healing: 'Supports eye health, helps with infections, and aids in childbirth.'
+            }
+        };
+
+        // Lucky elements calculation functions
+        function calculateLuckyNumber(name, dob) {
+            let sum = 0;
+            
+            // Add name value
+            if (name) {
+                for (let char of name.toLowerCase()) {
+                    if (char >= 'a' && char <= 'z') {
+                        sum += char.charCodeAt(0) - 96;
+                    }
+                }
+            }
+            
+            // Add date value
+            if (dob) {
+                const date = new Date(dob);
+                sum += date.getDate() + (date.getMonth() + 1) + date.getFullYear();
+            }
+            
+            // Reduce to single digit
+            while (sum > 9) {
+                sum = sum.toString().split('').reduce((a, b) => parseInt(a) + parseInt(b), 0);
+            }
+            
+            return sum || Math.floor(Math.random() * 9) + 1;
+        }
+
+        function calculateLuckyColor(name, dob) {
+            const colors = [
+                { name: 'Royal Blue', hex: '#4169E1' },
+                { name: 'Emerald Green', hex: '#50C878' },
+                { name: 'Ruby Red', hex: '#E0115F' },
+                { name: 'Golden Yellow', hex: '#FFD700' },
+                { name: 'Amethyst Purple', hex: '#9966CC' },
+                { name: 'Rose Pink', hex: '#FF69B4' },
+                { name: 'Turquoise', hex: '#40E0D0' },
+                { name: 'Orange Sunset', hex: '#FF8C00' },
+                { name: 'Silver', hex: '#C0C0C0' }
+            ];
+            
+            let index = 0;
+            if (name) index += name.length;
+            if (dob) {
+                const date = new Date(dob);
+                index += date.getDate();
+            }
+            
+            return colors[index % colors.length];
+        }
+
+        function calculateLuckyStar(name, dob) {
+            const stars = [
+                'Sirius', 'Canopus', 'Arcturus', 'Vega', 'Capella',
+                'Rigel', 'Procyon', 'Betelgeuse', 'Aldebaran', 'Spica',
+                'Antares', 'Pollux', 'Fomalhaut', 'Deneb', 'Regulus'
+            ];
+            
+            let index = 0;
+            if (name) {
+                for (let char of name) {
+                    index += char.charCodeAt(0);
+                }
+            }
+            if (dob) {
+                const date = new Date(dob);
+                index += date.getMonth() * date.getDate();
+            }
+            
+            return stars[index % stars.length];
+        }
+
+        function calculateLuckyStone(name, dob) {
+            const stones = [
+                'Diamond', 'Ruby', 'Emerald', 'Sapphire', 
+                'Amethyst', 'Topaz', 'Garnet', 'Opal'
+            ];
+            
+            let index = 0;
+            if (name) {
+                index += name.replace(/\s/g, '').length;
+            }
+            if (dob) {
+                const date = new Date(dob);
+                index += date.getFullYear() % 100;
+            }
+            
+            return stones[index % stones.length];
+        }
+
+        function displayGemstoneDetail(stoneName) {
+            const stone = gemstoneData[stoneName];
+            if (!stone) return;
+
+            const detailHTML = `
+                <h3>✨ ${stoneName} - Your Lucky Gemstone</h3>
+                <p><strong>Description:</strong> ${stone.description}</p>
+                
+                <div class="gemstone-properties">
+                    ${Object.entries(stone.properties).map(([key, value]) => 
+                        `<div class="property"><strong>${key}:</strong> ${value}</div>`
+                    ).join('')}
+                </div>
+                
+                <p><strong>Benefits:</strong> ${stone.benefits}</p>
+                <p><strong>Healing Properties:</strong> ${stone.healing}</p>
+            `;
+            
+            document.getElementById('gemstoneDetail').innerHTML = detailHTML;
+        }
+
+        // Form submission handler
+        document.getElementById('luckyForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value.trim();
+            const dob = document.getElementById('dob').value;
+            
+            if (!name && !dob) {
+                alert('Please enter either your name or date of birth');
+                return;
+            }
+            
+            // Calculate lucky elements
+            const luckyNumber = calculateLuckyNumber(name, dob);
+            const luckyColor = calculateLuckyColor(name, dob);
+            const luckyStar = calculateLuckyStar(name, dob);
+            const luckyStone = calculateLuckyStone(name, dob);
+            
+            // Display results
+            document.getElementById('luckyNumber').textContent = luckyNumber;
+            document.getElementById('luckyColor').textContent = luckyColor.name;
+            document.getElementById('colorDisplay').style.backgroundColor = luckyColor.hex;
+            document.getElementById('luckyStar').textContent = luckyStar;
+            document.getElementById('luckyStone').textContent = luckyStone;
+            
+            // Display gemstone details
+            displayGemstoneDetail(luckyStone);
+            
+            // Show results section
+            document.getElementById('results').classList.add('show');
+            
+            // Scroll to results
+            document.getElementById('results').scrollIntoView({ 
+                behavior: 'smooth',
+                block: 'start'
+            });
+        });
+    </script>
+</body>
+</html>
+
