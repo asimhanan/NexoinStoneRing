@@ -455,7 +455,7 @@
         }
 
 .logo-c img {
-  width: 80px;
+  width: 60px;
   opacity: 0.7; 
   height: auto;
   cursor: pointer;
@@ -471,18 +471,18 @@
 }
 
 .whatsapp-sticky img {
-  width: 50px;
+  width: 60px;
   height: 50px;
   cursor: pointer;
 }
-        .tariqa{
+.tariqa{
     display: flex;
     justify-content: center;
     width: 50%;
     margin-left: 25%;
     margin-top: 1rem;
     border: 1px solid #671717;
-    background-color: #fff;
+    background-color: #bdb2fa;
     border-radius: 15px;
     padding: 0.5rem;
 }
@@ -492,27 +492,36 @@
     text-align: center;
     color: #9f2424;
 }
-
-
+.tariqa:hover{
+    background-color: rgba(5, 46, 182, 0.897);
+}
+.tariq:hover{
+    color: white;}
+.gallery{
+    display: flex;
+    justify-content: center;
+    /* width: 50%;
+    margin-left: 25%; */
+    margin-top: 1rem;
+    border-radius: 15px;
+    padding: 0.5rem;
+}
 
         
-        @media (max-width: 768px) {
+         @media (max-width: 768px) {
             .header-content {
+                height: auto;
             flex-direction: column;
             text-align: center;
             }
             
             nav ul {
-            margin-top: 1rem;
+             margin-top: .6rem; 
             justify-content: center;
-            flex-wrap: wrap;
             }
             
             nav ul li {
             margin: 0 0.5rem;
-            }
-            nav ul li .mob {
-            display: none;
             }
             
             .container,
@@ -551,6 +560,7 @@
             .about-img {
                 order: -1;
             }
+        
         }
     </style>
 </head>
@@ -570,6 +580,7 @@
             </nav>
         </div>
     </header>
+    
     <a href="https://wa.me/96566478563" target="_blank" class="whatsapp-sticky">
     <img src="https://img.icons8.com/color/48/000000/whatsapp.png" alt="Chat on WhatsApp" />
     </a>
@@ -579,11 +590,15 @@
         <div class="hero-content">
             <h1>Premium Silver Gemstone Rings</h1>
             <p>Discover our exquisite collection of handcrafted silver rings with certified gemstones from around the world. Custom designs available upon request.</p>
-            <a href="#products" class="btn">Explore Collection</a>
+            <a href="gallery.html" class="btn">Explore Gallery</a>
         </div>
     </section>
-     <div class="tariqa">
+
+    <div class="tariqa">
         <a href="https://asimhanan.github.io/NexoinGems/Tariq_Burj.html" class="tariq" target="_blank">Find your lucky Stone & Star</a>
+        </div>
+        <div class="gallery">
+            <a href="https://asimhanan.github.io/Galleries/" class="btn">Your ring Size</a>
         </div>
 
     <section id="products" class="container">
@@ -891,9 +906,4 @@
 
 <script src="script.js"></script>
 </body>
-
 </html>
-
-
-
-
